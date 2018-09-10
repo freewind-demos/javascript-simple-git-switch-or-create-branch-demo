@@ -1,7 +1,12 @@
-const workingDirPath = './local-repo'
-const simpleGit = require('simple-git')(workingDirPath)
+const simpleGit = require('simple-git/promise')
 
-simpleGit.clone('https://github.com/freewind-demos/javascript-frontend-hello-world-demo.git', 'demo-project')
-    .exec(function () {
-        console.log('cloned to: local-repo/demo-project')
-    })
+async function demo(targetBranch) {
+    await simpleGit('./local-repo').clone('https://github.com/freewind-demos/javascript-frontend-hello-world-demo.git', 'demo-project')
+    const git = simpleGit('./local-repo/demo-project')
+    console.log('branches: ' + (await git.branchLocal()).all)
+    console.log(`checkout branch: ${targetBranch}`)
+    await git.checkoutLocalBranch(targetBranch)
+    console.log('branches: ' + (await git.branchLocal()).all)
+}
+
+demo('admin')
