@@ -1,11 +1,17 @@
-JavaScript "simple-git" Clone Demo
-==================================
+JavaScript "simple-git" Switch or Create Branch Demo
+====================================================
 
-使用"simple-git"将指定的git仓库clone到本地
+使用"simple-git"在本地切换到新分支
 
 ```
 npm install
 node run demo
 ```
 
-然后就会在`local-repo`目录下看到新clone下来的`demo-project`。
+输出：
+
+```
+init branches: master
+checkout branch: admin
+current branches: admin,master
+```
